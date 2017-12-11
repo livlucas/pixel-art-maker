@@ -24,17 +24,13 @@
     }
 
     function makeGrid() {
-        let height,
-        width,
-        color;
+        let height = $('#input_height').val(),
+            width = $('#input_width').val();
     
         $('#sizePicker').on('submit', function( evt ) {
             evt.preventDefault();
 
             $('table tr').remove();
-
-            height = $('#input_height').val();
-            width = $('#input_width').val();
 
             if (height > 80 || width > 80) {
                 window.alert("you can't have the width or height bigger than 80");
@@ -42,7 +38,6 @@
             }
 
         generateTableTemplate(height, width);
-
         });
     }
 
