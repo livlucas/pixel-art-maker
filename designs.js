@@ -1,35 +1,23 @@
-// Select color input
-// Select size input
-
-// When size is submitted by the user, call makeGrid()
 "use strict";
     function generateTableTemplate(height, width) {
-        let i,
-            j,
-            html;
+        
+        let html = '<tr class="table-row"><<td><div class="content"></div></td>/tr>';
 
-        html = '<tr class="table-row"><<td><div class="content"></div></td>/tr>';
-
-
-        for (i = 0; i < height; i += 1) {
+        for (let i = 0; i < height; i += 1) {
             $('table').append($(html));
         }
 
-        for (j = 1; j < width; j += 1) {
-             $('.table-row').each(function () {
-                $(this).append('<td><div class="content"></div></td>');
+        for (let j = 1; j < width; j += 1) {
+            $('.table-row').each(function () {
+            $(this).append('<td><div class="content"></div></td>');
             });
         }   
     }
 
     function colorCanvas() {
          $('table').on('click', function ( evt ) {
-            let $par,
-                color;
-
-            color = $('#colorPicker').val();
-
-            $par = $(evt.target).parent();
+            let $par = $(evt.target).parent(),
+                color = $('#colorPicker').val();
 
             $par.css("background-color", color);
         });
@@ -48,14 +36,17 @@
             height = $('#input_height').val();
             width = $('#input_width').val();
 
+            if (height > 80 || width > 80) {
+                window.alert("you can't have the width or height bigger than 80");
+                return;
+            }
+
         generateTableTemplate(height, width);
 
         });
     }
 
-(function () { 
-    makeGrid();
-    colorCanvas();
-}());
+makeGrid();
+colorCanvas();
 
 
